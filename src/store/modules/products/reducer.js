@@ -1,11 +1,12 @@
 import PRODUCTS from "../../../produtos";
-import { _PRODUCTS } from "./actionsType";
+import { FILTER_TYPE } from "./actionsType";
+
 const defultState = PRODUCTS;
+
 export const productsReduce = (state = defultState, { type, value }) => {
   switch (type) {
-    case _PRODUCTS:
-      return [...state, value];
-
+    case FILTER_TYPE:
+      return [...value];
     default:
       return state;
   }

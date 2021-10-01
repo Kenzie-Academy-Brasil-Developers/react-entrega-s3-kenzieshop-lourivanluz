@@ -1,8 +1,15 @@
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { HeaderStyled } from "./style";
-
+import { filterProductsThunk } from "../../store/modules/products/thunk";
 export const Header = () => {
   const history = useHistory();
+  const dispath = useDispatch();
+
+  const handleFilter = (filterType) => {
+    history.push("/");
+    dispath(filterProductsThunk(filterType));
+  };
 
   return (
     <HeaderStyled>
@@ -15,19 +22,24 @@ export const Header = () => {
           <nav>
             <ul>
               <li>
-                <span>Eletronico</span>
+                <span onClick={() => handleFilter("electronic")}>
+                  Eletronico
+                </span>
               </li>
               <li>
-                <span>Ferramenta</span>
+                <span onClick={() => handleFilter("tools")}>Ferramenta</span>
               </li>
               <li>
-                <span>moveis</span>
+                <span onClick={() => handleFilter("furniture")}>moveis</span>
               </li>
               <li>
-                <span>Bebida</span>
+                <span onClick={() => handleFilter("drink")}>Bebida</span>
               </li>
               <li>
-                <span>esporte</span>
+                <span onClick={() => handleFilter("sport")}>esporte</span>
+              </li>
+              <li>
+                <span onClick={() => handleFilter("")}>Todos produtos</span>
               </li>
             </ul>
           </nav>

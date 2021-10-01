@@ -1,1 +1,1 @@
-export const _PRODUCTS = "@products/add";
+export const FILTER_TYPE = "@products/filter";

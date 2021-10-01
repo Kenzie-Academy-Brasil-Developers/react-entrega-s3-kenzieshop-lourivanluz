@@ -1,10 +1,8 @@
-import { addProduct } from "./actions";
+import PRODUCTS from "../../../produtos";
+import { filterProducts } from "./actions";
 
-const addProductThunk = (product) => (dispath, getStore) => {
-  const list = getStore();
-  product.id = list.length;
+export const filterProductsThunk = (filterType) => (dispath) => {
+  const Filtred = PRODUCTS.filter((item) => item.category === filterType);
 
-  dispath(addProduct(product));
+  dispath(filterProducts(filterType ? Filtred : PRODUCTS));
 };
-
-export default addProductThunk;

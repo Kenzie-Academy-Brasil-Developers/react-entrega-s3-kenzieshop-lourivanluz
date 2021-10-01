@@ -1,3 +1,6 @@
-import _PRODUCTS from "./actionsType";
+import { FILTER_TYPE } from "./actionsType";
 
-export const addProduct = (product) => ({ type: _PRODUCTS, product });
+export const filterProducts = (filterType) => ({
+  type: FILTER_TYPE,
+  value: filterType,
+});

@@ -8,7 +8,7 @@ export const cartReduce = (state = defultCart, { type, value }) => {
       return [...state, value];
 
     case RMV_CART:
-      return [...state, value];
+      return [...value];
 
     default:
       return state;

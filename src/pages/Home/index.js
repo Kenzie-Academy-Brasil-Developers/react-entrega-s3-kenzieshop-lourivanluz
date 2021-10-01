@@ -1,7 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { ListProduct } from "../../components/ListProduct";
 
 export const Home = () => {
   const { products } = useSelector((state) => state);
-  console.log(products);
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>Produtos</h1>
+      <ListProduct list={products} buyable={true} />
+    </div>
+  );
 };
