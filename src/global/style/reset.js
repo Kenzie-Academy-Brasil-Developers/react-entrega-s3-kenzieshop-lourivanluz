@@ -21,6 +21,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: var(---fontMain);
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -29,6 +30,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+}
+html,body{
+	min-height: 100vh;
 }
 ol, ul {
 	list-style: none;
@@ -54,12 +58,16 @@ button{
 }
 
 :root{
---fontMain:'Comfortaa, cursive';
+--fontMain:'Comfortaa', cursive;
+--fontSecondary :'Lato', sans-serif;
 --primaryColor:#375A8B;
---primaryColorMidleLight:#5374A1
---primaryColorLight:#829DC2
---primaryColorMidleDark:#214577
---primaryColorDark:#10315E
-
+--primaryColorMidleLight:#5374A1;
+--primaryColorLight:#829DC2;
+--primaryColorMidleDark:#214577;
+--primaryColorDark:#10315E;
+--colorFontlight:white;
+--heightHeader:90px;
+--heightFooter:40px;
+--heightMain:calc(100vh - (var(--heightHeader) + var(--heightFooter)))
 }
 `;

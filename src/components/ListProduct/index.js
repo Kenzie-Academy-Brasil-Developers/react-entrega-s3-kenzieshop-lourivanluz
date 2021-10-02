@@ -1,12 +1,13 @@
 import { Card } from "../Card";
+import { UlStyled } from "./style";
 export const ListProduct = ({ list, buyable }) => {
   return (
-    <ul>
+    <UlStyled>
       {list?.map((item, index) => (
         <li key={index}>
           <Card item={item} buyable={buyable} />
         </li>
       ))}
-    </ul>
+    </UlStyled>
   );
 };

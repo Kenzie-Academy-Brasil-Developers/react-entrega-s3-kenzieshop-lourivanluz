@@ -1,8 +1,17 @@
 import PRODUCTS from "../../../produtos";
-import { filterProducts } from "./actions";
+import { toast } from "react-toastify";
+import { filterProducts, searchProducts } from "./actions";
 
 export const filterProductsThunk = (filterType) => (dispath) => {
-  const Filtred = PRODUCTS.filter((item) => item.category === filterType);
+  const filtred = PRODUCTS.filter((item) => item.category === filterType);
 
-  dispath(filterProducts(filterType ? Filtred : PRODUCTS));
+  dispath(filterProducts(filterType ? filtred : PRODUCTS));
+};
+
+export const searchProductsThunk = (product) => (dispath) => {
+  const filtred = PRODUCTS.filter((item) => item.tags.includes(product));
+  if (filtred.length === 0) {
+    toast.error("Nem um produto encontrado");
+  }
+  dispath(searchProducts(filtred.length >= 1 ? filtred : PRODUCTS));
 };
