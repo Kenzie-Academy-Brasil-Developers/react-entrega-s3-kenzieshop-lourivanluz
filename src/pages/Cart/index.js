@@ -1,16 +1,34 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ListProduct } from "../../components/ListProduct";
 import { DivCart } from "./style";
 
 export const Cart = () => {
-  const { cart } = useSelector((state) => state);
+  const {
+    cart,
+    user: { auth },
+  } = useSelector((state) => state);
 
   const totalPrice = cart
     .reduce((acc, item) => Number(item.price) + acc, 0)
     .toFixed(2);
+
+  const [priceDiscounted, setPriceDisconted] = useState(0);
   const parcel = 12;
   const _interest = (2 / 100) * totalPrice;
+  const _discount = (5 / 100) * totalPrice;
   const parcelPrice = (Number(totalPrice) + _interest) / parcel;
+
+  useEffect(() => {
+    if (auth) {
+      setPriceDisconted(
+        Number(totalPrice - _discount).toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })
+      );
+    }
+  }, [_discount]);
 
   const formatCurrency = Number(totalPrice).toLocaleString("pt-br", {
     style: "currency",
@@ -34,7 +52,9 @@ export const Cart = () => {
           <p>
             {`O valor total de `}
             <br />
-            <span>{formatCurrency}</span>
+            <span auth={auth}>{formatCurrency}</span>
+            <br />
+            {auth && <span>{priceDiscounted}</span>}
             {` a vista`}
           </p>
           <p>

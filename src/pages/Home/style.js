@@ -7,7 +7,6 @@ export const DivHome = styled.div`
   margin: 0 auto;
   background-color: var(--primaryColorLight);
   padding: 15px;
-  justify-content: space-evenly;
   h1 {
     font-family: var(--fontMain);
     font-size: 20px;

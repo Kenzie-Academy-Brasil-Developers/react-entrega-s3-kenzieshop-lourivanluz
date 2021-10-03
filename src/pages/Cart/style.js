@@ -47,7 +47,10 @@ export const DivCart = styled.div`
         margin-bottom: 15px;
       }
       span {
-        font-size: 18px;
+        font-size: 16px;
+        text-decoration: ${({ auth = false }) =>
+          auth ? "line-through" : "none"};
+        text-decoration: wavy;
       }
     }
     @media (min-width: 720px) {

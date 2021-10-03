@@ -20,8 +20,12 @@ export const HeaderStyled = styled.header`
     margin: 0 auto;
 
     .imgContainer {
-      width: 80px;
-      background-color: red;
+      display: flex;
+      justify-content: center;
+
+      img {
+        object-fit: cover;
+      }
 
       @media (min-width: 1023px) {
         & {

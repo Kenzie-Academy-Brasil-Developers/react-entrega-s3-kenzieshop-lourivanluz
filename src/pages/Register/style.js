@@ -8,10 +8,10 @@ export const DivStyled = styled.div`
   margin: 0 auto;
   background-color: white;
   padding: 50px 15px;
-  font-family: var(--fontSecondary);
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-family: var(--fontSecondary);
   div {
     margin-bottom: 15px;
   }

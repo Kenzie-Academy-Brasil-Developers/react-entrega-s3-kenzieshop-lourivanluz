@@ -1,2 +1,2 @@
-const logo = "./Kshop.png";
+import logo from "./Kshop.png";
 export default logo;

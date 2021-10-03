@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { HeaderStyled } from "./style";
 import {
@@ -21,6 +21,7 @@ export const Header = () => {
   const history = useHistory();
   const dispath = useDispatch();
   const [search, setSearch] = useState("");
+  const { user } = useSelector((state) => state);
 
   const handleFilter = (filterType) => {
     history.push("/");
@@ -47,7 +48,7 @@ export const Header = () => {
       <div className="container">
         <div className="search">
           <div className="imgContainer">
-            <img src="./../../assets/img/Kshop.png" alt="logo" />
+            <img src={logo} alt="logo" />
           </div>
           <div className="inputHeader">
             <input
@@ -99,7 +100,27 @@ export const Header = () => {
               >
                 Home
               </MenuItem>
-              <MenuItem onClick={handleClose}>Login</MenuItem>
+
+              {!user.auth && (
+                <MenuItem
+                  onClick={() => {
+                    history.push("/login");
+                    handleClose();
+                  }}
+                >
+                  Login
+                </MenuItem>
+              )}
+              {user.auth && (
+                <MenuItem
+                  onClick={() => {
+                    localStorage.clear();
+                    handleClose();
+                  }}
+                >
+                  logout
+                </MenuItem>
+              )}
 
               <MenuItem
                 onClick={() => {
@@ -154,10 +175,22 @@ export const Header = () => {
                 <BiHomeSmile className="icon" />
                 <span>Home</span>
               </li>
-              <li>
-                <BiLogIn className="icon" />
-                <span>Login</span>
-              </li>
+              {!user.auth && (
+                <li onClick={() => history.push("/login")}>
+                  <BiLogIn className="icon" />
+                  <span>Login</span>
+                </li>
+              )}
+              {user.auth && (
+                <li
+                  onClick={() => {
+                    localStorage.clear();
+                  }}
+                >
+                  <BiLogIn className="icon" />
+                  <span>Logout</span>
+                </li>
+              )}
             </ul>
           </div>
         </div>

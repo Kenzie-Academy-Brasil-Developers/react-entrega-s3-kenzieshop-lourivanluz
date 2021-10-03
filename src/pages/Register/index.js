@@ -1,59 +1,63 @@
 import { Button, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router";
-import { userLoginThunk } from "../../store/modules/user/thunk";
-import { DivStyled } from "./syle";
+import { DivStyled } from "./style";
+import { useHistory } from "react-router";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userRegisterThunk } from "../../store/modules/user/thunk";
 
-export const Login = () => {
+export const Register = () => {
   const history = useHistory();
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [passoword, setPassoword] = useState("");
+
   const dispath = useDispatch();
-  const [email, setEmeil] = useState("");
-  const [password, setPassoword] = useState("");
 
-  const { user } = useSelector((state) => state);
-  if (user.auth) {
-    return <Redirect to="/" />;
-  }
-
-  const handleLogin = (email, senha) => {
-    const login = {
+  const handleRegister = (nome, email, passoword) => {
+    const user = {
+      nome: nome,
       email: email,
-      password: senha,
+      password: passoword,
     };
-
-    dispath(userLoginThunk(login));
+    dispath(userRegisterThunk(user));
+    history.push("/login");
   };
 
   return (
     <DivStyled>
       <div className="titleForm">
-        <h1>Login</h1>
+        <h1>Cadastre-se</h1>
         <p>
-          Não tem uma conta ?
-          <span onClick={() => history.push("/register")}>Registre-se</span>
+          Já tem uma conta ?
+          <span onClick={() => history.push("/login")}>Login</span>
         </p>
       </div>
 
       <div className={"form"}>
         <TextField
+          label="Nome"
+          variant="outlined"
+          value={nome}
+          onChange={(event) => setNome(event.target.value)}
+        />
+        <TextField
           label="Email"
           variant="outlined"
           value={email}
-          onChange={(event) => setEmeil(event.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
         />
         <TextField
           label="senha"
           variant="outlined"
           type="password"
-          value={password}
+          value={passoword}
           onChange={(event) => setPassoword(event.target.value)}
         />
         <Button
           variant="contained"
-          onClick={() => handleLogin(email, password)}
+          onClick={() => handleRegister(nome, email, passoword)}
         >
-          login
+          Registrar-se
         </Button>
       </div>
       <footer>
