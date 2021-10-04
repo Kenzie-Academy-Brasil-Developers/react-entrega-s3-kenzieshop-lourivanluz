@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import { userLoginThunk } from "../../store/modules/user/thunk";
 import { DivStyled } from "./syle";
@@ -10,11 +10,7 @@ export const Login = () => {
   const dispath = useDispatch();
   const [email, setEmeil] = useState("");
   const [password, setPassoword] = useState("");
-
-  const { user } = useSelector((state) => state);
-  if (user.auth) {
-    return <Redirect to="/" />;
-  }
+  const [isLogged,setIsLogged] = useState(false)
 
   const handleLogin = (email, senha) => {
     const login = {
@@ -22,8 +18,12 @@ export const Login = () => {
       password: senha,
     };
 
-    dispath(userLoginThunk(login));
+    dispath(userLoginThunk(login,setIsLogged));
   };
+
+  if(isLogged){
+    return <Redirect to="/"/>
+  }
 
   return (
     <DivStyled>

@@ -16,6 +16,7 @@ import {
 import logo from "../../assets/img";
 import { useState } from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
+import { userRegisterThunk } from "../../store/modules/user/thunk";
 
 export const Header = () => {
   const history = useHistory();
@@ -23,14 +24,16 @@ export const Header = () => {
   const [search, setSearch] = useState("");
   const { user } = useSelector((state) => state);
 
+  console.log(user)
+
   const handleFilter = (filterType) => {
     history.push("/");
     dispath(filterProductsThunk(filterType));
   };
 
   const handleSearch = (product) => {
-    console.log(product);
     dispath(searchProductsThunk(product));
+    history.push('/')
     setSearch("");
   };
 
@@ -42,6 +45,16 @@ export const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = ()=>{
+    const user = {
+      nome: "",
+      email: "",
+      password: "",
+    }
+    dispath(userRegisterThunk(user))
+
+  }
 
   return (
     <HeaderStyled>
@@ -114,7 +127,8 @@ export const Header = () => {
               {user.auth && (
                 <MenuItem
                   onClick={() => {
-                    localStorage.clear();
+                    handleLogout()
+                    localStorage.removeItem('user');
                     handleClose();
                   }}
                 >
@@ -184,7 +198,8 @@ export const Header = () => {
               {user.auth && (
                 <li
                   onClick={() => {
-                    localStorage.clear();
+                    handleLogout()
+                    localStorage.removeItem('user');
                   }}
                 >
                   <BiLogIn className="icon" />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ListProduct } from "../../components/ListProduct";
-import { DivCart } from "./style";
+import { DivCart, SpanStyled } from "./style";
 
 export const Cart = () => {
   const {
@@ -52,14 +52,14 @@ export const Cart = () => {
           <p>
             {`O valor total de `}
             <br />
-            <span auth={auth}>{formatCurrency}</span>
+            <SpanStyled auth={auth}>{formatCurrency}</SpanStyled>
             <br />
-            {auth && <span>{priceDiscounted}</span>}
+            {auth && <SpanStyled>{priceDiscounted}</SpanStyled>}
             {` a vista`}
           </p>
           <p>
             {`Ou ${parcel}x de `}
-            <span>{formatedParcelPrice}</span>
+            <SpanStyled>{formatedParcelPrice}</SpanStyled>
           </p>
         </div>
       </div>

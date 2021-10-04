@@ -4,14 +4,9 @@ import { Main } from "./components/Main";
 import { Routes } from "./routes/routes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { useState } from "react";
 
 function App() {
-  //useState autenticado
 
-  const [authtentication, setAuthtentication] = useState(
-    JSON.parse(localStorage.getItem("user")) || ""
-  );
   return (
     <div className="App">
       <ToastContainer

@@ -46,15 +46,15 @@ export const DivCart = styled.div`
       p {
         margin-bottom: 15px;
       }
-      span {
-        font-size: 16px;
-        text-decoration: ${({ auth = false }) =>
-          auth ? "line-through" : "none"};
-        text-decoration: wavy;
-      }
     }
     @media (min-width: 720px) {
       width: 35%;
     }
   }
+`;
+
+export const SpanStyled = styled.span`
+  font-size: 16px;
+  color: ${({ auth = false }) => (auth ? "red" : "blue")};
+  text-decoration: ${({ auth = false }) => (auth ? "line-through" : "none")};
 `;

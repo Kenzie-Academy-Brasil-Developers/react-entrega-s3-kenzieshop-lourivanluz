@@ -67,6 +67,14 @@ export const HeaderStyled = styled.header`
           border-radius: 15px;
           border: none;
           transition: all 0.1s linear;
+
+          &:valid{
+            width: 270px;
+          }
+
+          &:valid ~ span{
+            display: none;
+          }
           &:valid ~ button {
             display: block;
           }
@@ -77,6 +85,9 @@ export const HeaderStyled = styled.header`
           }
           &:focus + span {
             display: none;
+          }
+          &:focus ~ button {
+            display: block;
           }
 
           &::placeholder {
